@@ -18,3 +18,26 @@ d3.csv('./foodImports_AE.csv', function(dataIn){
     //do your first drawing here
 
 });
+
+function buttonClicked(value){
+    reloadData(value);
+}
+
+
+function reloadData(inputName){
+
+        d3.csv('foodImports_' + inputName + '.csv', function(error, newData){
+            console.log(newData);
+
+            //call your update function from here!!
+            //updateData(newData);
+        });
+
+}
+
+//if you try to run the update code immediately after the reload code instead of inside it,
+//it will try to run before the reload is complete.
+//This will cause you problems:
+
+//reloadData(inputName);
+//updateData(newData);

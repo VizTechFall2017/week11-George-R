@@ -74,7 +74,7 @@ d3.csv("players.csv", function(error, data) {
 
 
     drawPoints2(selectedTeam);
-
+    drawPoints4(selectedTeam);
 });
 
 function optionMenu() {

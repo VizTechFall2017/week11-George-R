@@ -67,12 +67,14 @@ d3.csv('./shotdistteam.csv', function(dataIn){
         .attr('fill', "darkorange")
         .on("click", function(d){
           var selection = d3.select(this).attr("id")
-
           var newData = updateData(selection)
-          console.log(newData)
+          var newData2 = updateData5(selection)
+          console.log(newData2)
+          console.log(selection)
           drawPoints2(newData);
-
+          drawPoints4(newData2)
         })
+
           $('#testRect').tooltip();
 
     //call the drawPoints function below, and hand it the data2016 variable with the 2016 object array in it
