@@ -10,7 +10,7 @@ font-weight : 1px;
 
 margin-bottom: -100px;
 margin-top: -50px;
- transform: rotate(90deg);
+transform: rotate(90deg);
 
 }
 .label {
@@ -51,4 +51,17 @@ stroke: white;
 
 stroke: white;
 
+}
+
+#ptline
+
+{
+
+ transform: rotate(15, 40, 40);
+
+}
+
+.menu-container{
+
+  opacity: 0;
 }

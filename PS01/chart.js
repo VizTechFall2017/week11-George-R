@@ -77,7 +77,7 @@ console.log(updateData4("Kyle Lowry"))
      .data(dataPoints);
 
 
-  
+
 
 
 
@@ -93,9 +93,10 @@ console.log(updateData4("Kyle Lowry"))
 
      })
 
-     .attr('r', '1')
+     .attr('r', '2')
 
      .attr("fill", "white")
+     .attr("opacity", "0.3")
 
      shotchart
      .attr("cx", function(d){
@@ -107,7 +108,7 @@ console.log(updateData4("Kyle Lowry"))
 
      })
 
-     .attr('r', '1')
+     .attr('r', '2')
 
      .attr("fill", "white")
 
@@ -116,6 +117,8 @@ console.log(updateData4("Kyle Lowry"))
      .remove()
 
   }
+
+
 
 //       .attr('fill', function(d){
 //         return randomColor();
