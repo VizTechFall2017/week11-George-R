@@ -9,6 +9,18 @@ var selectedPlayer
 var nestedData2;
 var nestedData4;
 var nestedData5;
+
+
+var color;
+
+var opa;
+
+var rad;
+
+var div = d3.select("body").append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
+
 // function selectedTeam(value){
 //     reloadData(value);
 // }
@@ -38,9 +50,6 @@ var  nestData = d3.nest()
 
 
 
-
-
-
   });
 
 
@@ -55,7 +64,39 @@ var  nestedData = d3.nest()
 
 // drawPoints4(dataIn4)
 
+color = function color(d) { if (d.shotoutcome == "SCORED") {
+                                        return "#00ff00"
 
+                            } else if (d.shotoutcome == "MISSED") {
+                                        return "#FFFFFF"
+                                      }
+                              else {
+                                        return "#FFFFFF"
+                              }
+                           };
+
+opa = function opa(d) { if (d.shotoutcome == "SCORED") {
+                                        return "0.6"
+
+                            } else if (d.shotoutcome == "MISSED") {
+                                        return "0.6"
+                                      }
+                              else {
+                                        return "0.6"
+                              }
+                           };
+
+
+rad = function rad(d) { if (d.shotoutcome == "SCORED") {
+                                        return "2.8"
+
+                            } else if (d.shotoutcome == "MISSED") {
+                                        return "1.8"
+                                      }
+                              else {
+                                        return "1"
+                              }
+                           };
 
 
 
@@ -77,13 +118,49 @@ console.log(updateData4("Kyle Lowry"))
      .data(dataPoints);
 
 
+     shotchart.transition()
+              .duration(500)
+              .ease(d3.easeSin)
+              .attr("cx", function(d) {
+                return d.locx
+              })
+              .attr("cy", function(d) {
+                return d.locy;
+              })
 
-
-
+              // svg3.append("text")
+              //  .attr("transform", "rotate(-90)")
+              //      .attr("x", -400)
+              //      .attr("y", 15)
+              //      .attr("font-size", 15)
+              //      .attr("fill", "white")
+              //      .text("2015-2016 Regular Season Shot Chart: Team and Player");
 
 
      shotchart.enter()
      .append('circle')
+
+
+     .on("mouseover", function(d) {
+       div.transition()
+     .duration(200)
+     .style("opacity", .9)
+
+
+     div	.html("Player: <strong>" + d.Player+"</strong>" + "</span>" + "<br/>"+"<br/>"  + "Shot Type: <strong>" + d.shottype+"</strong><br/>"  )
+     .style("left",(d3.event.pageX) + 10 + "px")
+     .style("top",(d3.event.pageY - 28) + "px")
+
+     })
+     .on("mouseout", function(d) {
+     div.transition()
+     .duration(10)
+     .style("opacity", 0)
+
+     div.html("")
+     })
+
+
      .attr("cx", function(d){
 
      return d.locx;
@@ -93,10 +170,10 @@ console.log(updateData4("Kyle Lowry"))
 
      })
 
-     .attr('r', '2')
+     .attr('r', rad)
 
-     .attr("fill", "white")
-     .attr("opacity", "0.3")
+     .attr("fill", color)
+     .attr("opacity", opa)
 
      shotchart
      .attr("cx", function(d){
@@ -108,9 +185,9 @@ console.log(updateData4("Kyle Lowry"))
 
      })
 
-     .attr('r', '2')
+     .attr('r', rad)
 
-     .attr("fill", "white")
+     .attr("fill", color)
 
      shotchart
      .exit()

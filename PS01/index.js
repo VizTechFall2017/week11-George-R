@@ -59,12 +59,27 @@ d3.csv('./shotdistteam.csv', function(dataIn){
         */
 
     //bind the data to the d3 selection, but don't draw it yet
-    svg2.selectAll('rect')
+  bar =  svg2.selectAll('rect')
         .data(loadData)
         .enter()
         .append('rect')
         .attr('class','bars')
-        .attr('fill', "darkorange")
+        .attr('fill', "blue")
+        .attr('fill-opacity', 0.5)
+        .on ('mouseover', function(d){
+          d3.select(this)
+          .attr("fill-opacity", 1)
+        }
+        )
+
+        .on ('mouseout', function (d){
+
+          d3.select(this)
+
+          .attr("fill-opacity", 0.5)
+
+        })
+
         .on("click", function(d){
           var selection = d3.select(this).attr("id")
           var newData = updateData(selection)
@@ -73,12 +88,17 @@ d3.csv('./shotdistteam.csv', function(dataIn){
           console.log(selection)
           drawPoints2(newData);
           drawPoints4(newData2)
+          d3.select(this)
+          .attr("fill", "#00ff00")
         })
 
           $('#testRect').tooltip();
 
     //call the drawPoints function below, and hand it the data2016 variable with the 2016 object array in it
     drawPoints(loadData);
+
+     bar.exit()
+     .attr('fill', 'blue')
 
 });
 
@@ -123,7 +143,7 @@ function drawPoints(pointData){
                .attr("y", 0)
                .attr("font-size", 15)
                .attr("fill", "white")
-               .text("% of shots taken from 23+ feet");
+               .text("% of shots taken from beyond the 3pt line");
 
 
 

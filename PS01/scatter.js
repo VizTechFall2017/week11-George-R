@@ -73,8 +73,8 @@ d3.csv("players.csv", function(error, data) {
     yAxis(scaleQ);
 
 
-    drawPoints2(selectedTeam);
-    drawPoints4(selectedTeam);
+    // drawPoints2(selectedTeam);
+    // drawPoints4(selectedTeam);
 });
 
 function optionMenu() {
@@ -126,7 +126,9 @@ function drawPoints2(dataPoints) {
                 })
 
                 .attr("r", 5)
-                .attr("fill", colorFill)
+                .attr("fill", "#00ff00")
+
+
                 .attr("id", function(d){
                   return d.Player
                 });
@@ -141,13 +143,14 @@ function drawPoints2(dataPoints) {
                   .attr("id", function(d){
                     return d.Player
                   })
+                  .attr("fill-opacity", 0.8)
 
 
                   .on("mouseover", function(d) {
                     div.transition()
                 .duration(200)
                 .style("opacity", .9)
-                .style("background", "darkorange")
+
 
             div	.html(d.Player + "</span>" + "<br/>"+"<br/>"  + "3pt FGA%: <strong>" + d.threes+"</strong><br/>"  +"3pt FG%: <strong>"  + d.threep+ "</strong"  )
                 .style("left",(d3.event.pageX) + 10 + "px")
@@ -158,7 +161,7 @@ function drawPoints2(dataPoints) {
             div.transition()
                 .duration(1000)
                 .style("opacity", 0)
-                .style("background", "orange");
+
                 div.html("")
         })
 
@@ -180,7 +183,7 @@ function drawPoints2(dataPoints) {
                     .duration(500)
                     .ease(d3.easeSin)
                   .attr("r", 5)
-                  .attr("fill", colorFill)
+                  .attr("fill", "#00ff00")
 
 
 
